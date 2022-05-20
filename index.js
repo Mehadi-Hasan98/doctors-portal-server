@@ -180,6 +180,13 @@ async function run() {
     // verifyAdmin ta first line tay boshate hobe
 
 
+    app.delete('/doctor/:email', verifyJWT, verifyAdmin, async (req, res) => {
+      const email = req.params.email;
+      const filter = {email: email};
+      const result = await doctorCollection.deleteOne(filter);
+      res.send(result);
+    })
+
   }
    finally {
 
